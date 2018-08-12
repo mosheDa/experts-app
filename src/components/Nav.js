@@ -16,6 +16,9 @@ class Nav extends Component {
             <Link to="/">All Videos</Link>
           </li>
           <li>
+            <Link to="/name">Moshe's Videos</Link>
+          </li>
+          <li>
             {
              ( isLoggedIn() ) ? <Link to="/upload">Upload Videos</Link> :  ''
             }

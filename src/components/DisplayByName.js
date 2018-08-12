@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Nav from './Nav';
 import { isLoggedIn } from '../utils/AuthService';
 import { CloudinaryContext, Transformation, Video } from 'cloudinary-react';
 import axios from 'axios';
 
-const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/videos'
+const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/videos/'
 
-class Display extends Component {
+class DisplayByName extends Component {
 
   state = { videos: [] };
 
   getVideos() {
-    axios.get(CLOUDBINARY_API_ENDPOINT)
+    const username = 'mdavidesko';
+    axios.get(CLOUDBINARY_API_ENDPOINT + username)
           .then(res => {
             console.log(res.data.resources);
             this.setState({ videos: res.data.resources});
@@ -51,4 +52,4 @@ class Display extends Component {
   }
 }
 
-export default Display;
+export default DisplayByName;
