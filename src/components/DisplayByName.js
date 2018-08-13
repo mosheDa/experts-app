@@ -11,17 +11,16 @@ class DisplayByName extends Component {
 
   state = { videos: [] };
 
-  getVideos() {
-    const username = 'mdavidesko';
+  getVideos(username) {
     axios.get(CLOUDBINARY_API_ENDPOINT + username)
           .then(res => {
-            console.log(res.data.resources);
             this.setState({ videos: res.data.resources});
     });
   }
 
   componentDidMount() {
-    this.getVideos();
+    console.log(this.props.params.username)
+    this.getVideos(this.props.params.username);
   }
 
   render() {

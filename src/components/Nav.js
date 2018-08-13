@@ -16,7 +16,7 @@ class Nav extends Component {
             <Link to="/">All Videos</Link>
           </li>
           <li>
-            <Link to="/name">Moshe's Videos</Link>
+            <Link to="/select">Select child</Link>
           </li>
           <li>
             {
