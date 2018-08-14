@@ -19,8 +19,7 @@ class DisplayByName extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.params.username)
-    this.getVideos(this.props.params.username);
+    this.getVideos(this.props.match.params.username);
   }
 
   render() {
@@ -29,7 +28,7 @@ class DisplayByName extends Component {
 
     return (
       <div>
-        <Nav />
+        <Nav /> 
         <h3 className="text-center"> Latest Videos on Miniflix </h3>
         <hr/>
 

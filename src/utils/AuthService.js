@@ -1,6 +1,7 @@
 import decode from 'jwt-decode';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 import auth0 from 'auth0-js';
+import history from "../components/history.js";
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
@@ -9,6 +10,7 @@ const CLIENT_DOMAIN = 'unicoder.auth0.com';
 const REDIRECT = 'http://localhost:3000/callback';
 const SCOPE = 'full:access';
 const AUDIENCE = 'http://miniflix.com';
+
 
 var auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
@@ -27,7 +29,8 @@ export function login() {
 export function logout() {
   clearIdToken();
   clearAccessToken();
-  browserHistory.push('/');
+  history.push('/');
+  // browserHistory.push('/');
 }
 
 export function requireAuth(nextState, replace) {
