@@ -4,12 +4,15 @@ import Nav from './Nav';
 import { isLoggedIn } from '../utils/AuthService';
 import { CloudinaryContext, Transformation, Video } from 'cloudinary-react';
 import axios from 'axios';
+import Modal from 'react-responsive-modal';
 
-const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/videos/'
+const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/videos/';
+const USERS_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/users/';
+const DIAGNOSIS_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/diagnosis/';
 
 class DisplayByName extends Component {
 
-  state = { videos: [] };
+  state = {  open: false, videos: [], result:"" };
 
   getVideos(username) {
     axios.get(CLOUDBINARY_API_ENDPOINT + username)
@@ -18,18 +21,63 @@ class DisplayByName extends Component {
     });
   }
 
-  componentDidMount() {
-    this.getVideos(this.props.match.params.username);
+  getDiagnosis(username) {
+    axios.get(USERS_API_ENDPOINT + username)
+          .then(res => {
+            console.log(res)
+            this.setState({ dignosis: res.data, result:res.data.result});
+    });
   }
+
+  componentWillMount() {
+    this.getVideos(this.props.match.params.username);
+    this.getDiagnosis(this.props.match.params.username);
+    this.setState({...this.state, username: this.props.match.params.username });
+  }
+
+  onOpenModal = () => {
+    this.setState({...this.state, open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ ...this.state, open: false });
+  };
+
+  onUpdateInputValue = (e) => {
+    this.setState({ ...this.state, result: e.target.value });
+  };
+
+  onSubmit = () => {
+    const data = {result:this.state.result}
+    const url = DIAGNOSIS_API_ENDPOINT + this.state.dignosis._id;
+    axios.put(url, data)
+    .then(res => {
+      this.setState({ ...this.state, open: false });
+    })
+    .catch(err => {
+      console.log(err)
+      alert("fail")
+    });
+  };
 
   render() {
 
-    const { videos }  = this.state;
+    const { videos, open, username }  = this.state;
 
     return (
       <div>
         <Nav /> 
-        <h3 className="text-center"> Latest Videos on Miniflix </h3>
+        <h3 className="text-center"> Videos of {username}</h3>
+        <div>
+        <button className="btn btn-warning" onClick={this.onOpenModal}>Open diagnosis</button>
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <h3>Diagnosis</h3>
+          <textarea value={this.state.result} className="form-control" rows="5" id="comment" onChange={this.onUpdateInputValue}></textarea>
+         <button className="btn btn-success" onClick={this.onSubmit}>Submit diagnosis</button>  
+         <button className="btn btn-primary" onClick={this.onCloseModal}>Sent to colleague</button>         
+                
+        </Modal>
+      </div>
         <hr/>
 
         <div className="col-sm-12">

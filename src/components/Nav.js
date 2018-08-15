@@ -9,7 +9,7 @@ class Nav extends Component {
     return (
       <nav className="navbar navbar-default">
         <div className="navbar-header">
-          <Link className="navbar-brand" to="/">Miniflix</Link>
+          <Link className="navbar-brand" to="/">Diagnosis app</Link>
         </div>
         <ul className="nav navbar-nav">
           <li>
