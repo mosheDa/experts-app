@@ -4,7 +4,6 @@ import axios from 'axios';
 import Nav from './Nav';
 import DisplayByName from './DisplayByName';
 import history from './history';
-import Img from 'react-image'
 import { CloudinaryContext, Transformation, Video } from 'cloudinary-react';
 
 
