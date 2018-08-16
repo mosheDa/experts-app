@@ -65,17 +65,18 @@ class DisplayByName extends Component {
     const { videos, open, username }  = this.state;
 
     return (
-      <div>
+      <div dir="ltr">
         <Nav /> 
         <h3 className="text-center"> Videos of {username}</h3>
         <div>
         <button className="btn btn-warning" onClick={this.onOpenModal}>Open diagnosis</button>
         <Modal open={open} onClose={this.onCloseModal} center>
           <h3>Diagnosis</h3>
-          <textarea value={this.state.result} className="form-control" rows="5" id="comment" onChange={this.onUpdateInputValue}></textarea>
-         <button className="btn btn-success" onClick={this.onSubmit}>Submit diagnosis</button>  
-         <button className="btn btn-primary" onClick={this.onCloseModal}>Sent to colleague</button>         
-                
+          <textarea  value={this.state.result} className="form-control"cols="50" rows="20" id="comment" onChange={this.onUpdateInputValue}></textarea>
+         <div style={{alignItems:"right"}} >
+          <button  style={{margin:"5px"}} className="btn btn-success" onClick={this.onSubmit}><span className="glyphicon glyphicon-ok"></span></button>  
+          <button className="btn btn-primary" onClick={this.onCloseModal}><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>         
+        </div>  
         </Modal>
       </div>
         <hr/>
@@ -85,7 +86,8 @@ class DisplayByName extends Component {
             { videos.map((data, index) => (
                 <div className="col-sm-4" key={index}>
                   <div className="embed-responsive embed-responsive-4by3">
-                    <Video publicId={data.public_id} width="50"  controls></Video>
+                    <Video publicId={data.public_id} width="50"  controls>
+                    </Video>
                   </div>
                   <div> Created at {data.created_at} </div>
                 </div>

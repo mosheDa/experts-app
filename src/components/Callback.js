@@ -6,7 +6,7 @@ class Callback extends Component {
   componentDidMount() {
     setAccessToken();
     setIdToken();
-    window.location.href = "/select";
+    window.location.href = "/";
   }
 
   render() {

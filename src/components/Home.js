@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div>
         <Nav />
-        <h2>Home page </h2>
+        <h2 className="text-center">Home page </h2>
         
            {
              (isLoggedIn()) ? "" : ( <button className="btn btn-info log" onClick={() => login()}>Please Log In</button> )
