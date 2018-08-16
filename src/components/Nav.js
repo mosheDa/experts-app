@@ -12,11 +12,11 @@ class Nav extends Component {
           <Link className="navbar-brand" to="/">Diagnosis app</Link>
         </div>
         <ul className="nav navbar-nav">      
-          <li>
+          {/* <li>
             {
              ( isLoggedIn() ) ? <Link to="/upload">Upload Videos</Link> :  ''
             }
-          </li>
+          </li> */}
           <li>
             {
              ( isLoggedIn() ) ? <Link to="/select">Select child</Link> :  ''
