@@ -11,18 +11,22 @@ class Nav extends Component {
         <div className="navbar-header">
           <Link className="navbar-brand" to="/">Diagnosis app</Link>
         </div>
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/">All Videos</Link>
-          </li>
-          <li>
-            <Link to="/select">Select child</Link>
-          </li>
+        <ul className="nav navbar-nav">      
           <li>
             {
              ( isLoggedIn() ) ? <Link to="/upload">Upload Videos</Link> :  ''
             }
           </li>
+          <li>
+            {
+             ( isLoggedIn() ) ? <Link to="/select">Select child</Link> :  ''
+            }
+          </li>
+          {/* <li>
+            {
+             ( isLoggedIn() ) ? <Link to="/all">All Videos</Link>:  ''
+            }
+          </li> */}
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <li>

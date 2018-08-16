@@ -5,11 +5,11 @@ import history from "../components/history.js";
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
-const CLIENT_ID = 'EeobY3jxsMoFREmqfmsZwAALQb73WeWm';
-const CLIENT_DOMAIN = 'unicoder.auth0.com';
+const CLIENT_ID = 'JZD3ZrH4oQgqNyF19Sb8cDmF5HZAgVY2';
+const CLIENT_DOMAIN = 'uploadapp.eu.auth0.com';
 const REDIRECT = 'https://experts-app.herokuapp.com/callback';
 const SCOPE = 'full:access';
-const AUDIENCE = 'http://miniflix.com';
+const AUDIENCE = 'https://uploadapp.eu.auth0.com/userinfo';
 
 
 var auth = new auth0.WebAuth({
