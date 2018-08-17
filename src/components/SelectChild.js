@@ -6,9 +6,8 @@ import DisplayByName from './DisplayByName';
 import history from './history';
 import { CloudinaryContext, Transformation, Video } from 'cloudinary-react';
 
-// const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/users'
-const CLOUDBINARY_API_ENDPOINT = 'http://localhost:3001/users'
-
+const CLOUDBINARY_API_ENDPOINT = 'https://videos-diagnosis.herokuapp.com/users'
+// const CLOUDBINARY_API_ENDPOINT = 'http://localhost:3001/users'
 
 class SelectChild extends Component {
 
