@@ -17,14 +17,21 @@ class DisplayByName extends Component {
   getVideos(username) {
     axios.get(CLOUDBINARY_API_ENDPOINT + username)
           .then(res => {
-            this.setState({ videos: res.data.resources});
+            this.setState({ videos: res.data.resources.map(resource=>{
+              let videoData = resource &&  resource.context && resource.context.custom && 
+                resource.context.custom.data;
+              
+              if(videoData) videoData = JSON.parse(resource.context.custom.data)
+              return{
+                ...resource, videoData
+              }
+            })});
     });
   }
 
   getDiagnosis(username) {
     axios.get(USERS_API_ENDPOINT + username)
           .then(res => {
-            console.log(res)
             this.setState({ dignosis: res.data, result:res.data.result});
     });
   }
@@ -55,7 +62,7 @@ class DisplayByName extends Component {
       this.setState({ ...this.state, open: false });
     })
     .catch(err => {
-      console.log(err)
+      console.err(err)
       alert("fail")
     });
   };
@@ -89,7 +96,12 @@ class DisplayByName extends Component {
                     <Video publicId={data.public_id} width="50"  controls>
                     </Video>
                   </div>
-                  <div> Created at {data.created_at} </div>
+                  <div> Created at: {new Date(data.created_at).toDateString()}</div>                 
+                  {data.videoData && data.videoData.videoInfo ?
+                    <div> Info: {data.videoData.videoInfo}</div>  
+                     : ""}
+                  {data.videoData && data.videoData.age ?  <div> Age: {data.videoData.age} month</div>                      
+                 : ""}
                 </div>
               ))
             }
