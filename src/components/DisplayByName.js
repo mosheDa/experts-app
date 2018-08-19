@@ -75,8 +75,11 @@ class DisplayByName extends Component {
       <div dir="ltr">
         <Nav /> 
         <h3 className="text-center"> Videos of {username}</h3>
-        <div>
-        <button className="btn btn-warning" onClick={this.onOpenModal}>Open diagnosis</button>
+        <div> 
+        <button className="btn btn-warning" style={{margin:"5px"}} onClick={this.onOpenModal}>Open diagnosis</button>
+        <span>
+          Final risk calculation: <span class="badge">5</span>
+        </span> 
         <Modal open={open} onClose={this.onCloseModal} center>
           <h3>Diagnosis</h3>
           <textarea  value={this.state.result} className="form-control"cols="50" rows="20" id="comment" onChange={this.onUpdateInputValue}></textarea>
@@ -102,6 +105,9 @@ class DisplayByName extends Component {
                      : ""}
                   {data.videoData && data.videoData.age ?  <div> Age: {data.videoData.age} month</div>                      
                  : ""}
+                 <div>
+                  Risk calculation: <span class="badge">5</span>
+                </div>                 
                 </div>
               ))
             }
